@@ -17,8 +17,8 @@ fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
             None => {
                 m.insert(*item.1, item.0 as i32);
             },
-            Some(j) => {
-                return vec![item.0 as i32, *j]
+            Some(&j) => {
+                return vec![item.0 as i32, j]
             }
         }
     }
