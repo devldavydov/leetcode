@@ -13,15 +13,19 @@ func TestMergeTwoSortedLists(t *testing.T) {
 }
 
 func listFromSlice(sl []int) *ListNode {
-	var prev *ListNode
+	var first, prev *ListNode
 	for _, i := range sl {
 		node := &ListNode{Val: i, Next: nil}
 		if prev != nil {
 			prev.Next = node
 		}
 		prev = node
+
+		if first == nil {
+			first = prev
+		}
 	}
-	return prev
+	return first
 }
 
 func sliceFromList(p *ListNode) []int {

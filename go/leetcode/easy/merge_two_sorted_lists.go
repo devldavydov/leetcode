@@ -14,5 +14,41 @@ type ListNode struct {
 }
 
 func MergeTwoSortedLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	return nil
+	var prev, first *ListNode
+
+loop:
+	for {
+		switch {
+		case list1 != nil && list2 != nil:
+			if list1.Val <= list2.Val {
+				prev = addNode(prev, list1.Val)
+				list1 = list1.Next
+			} else {
+				prev = addNode(prev, list2.Val)
+				list2 = list2.Next
+			}
+		case list1 != nil && list2 == nil:
+			prev = addNode(prev, list1.Val)
+			list1 = list1.Next
+		case list1 == nil && list2 != nil:
+			prev = addNode(prev, list2.Val)
+			list2 = list2.Next
+		case list1 == nil && list2 == nil:
+			break loop
+		}
+
+		if first == nil {
+			first = prev
+		}
+	}
+
+	return first
+}
+
+func addNode(prev *ListNode, val int) *ListNode {
+	newNode := &ListNode{Val: val, Next: nil}
+	if prev != nil {
+		prev.Next = newNode
+	}
+	return newNode
 }
