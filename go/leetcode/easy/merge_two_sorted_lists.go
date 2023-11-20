@@ -8,13 +8,10 @@ Merge the two lists into one sorted list. The list should be made by splicing to
 Return the head of the merged linked list.
 */
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "github.com/devldavydov/leetcode/types"
 
-func MergeTwoSortedLists(list1 *ListNode, list2 *ListNode) *ListNode {
-	var prev, first *ListNode
+func MergeTwoSortedLists(list1 *types.ListNode, list2 *types.ListNode) *types.ListNode {
+	var prev, first *types.ListNode
 
 loop:
 	for {
@@ -45,8 +42,8 @@ loop:
 	return first
 }
 
-func addNode(prev *ListNode, val int) *ListNode {
-	newNode := &ListNode{Val: val, Next: nil}
+func addNode(prev *types.ListNode, val int) *types.ListNode {
+	newNode := &types.ListNode{Val: val, Next: nil}
 	if prev != nil {
 		prev.Next = newNode
 	}
